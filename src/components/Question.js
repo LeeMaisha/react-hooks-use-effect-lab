@@ -1,5 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+function TimeoutExample() {
+  const [message, setMessage] = useState('Waiting...');
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage('Done!');
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+  return <div>{message}</div>;
+}
 function Question({ question, onAnswered }) {
   const [timeRemaining, setTimeRemaining] = useState(1000);
 
